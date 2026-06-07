@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///C:/Users/omarg/Downloads/SIPG_Agenda_10.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>SIP-G — Agenda y Contraseñas</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;font-size:14px;color:#1a1a1a;background:#e8eaed}
+input,select,textarea{font-family:Arial,sans-serif;font-size:13px;padding:9px 12px;border:1.5px solid #bbb;border-radius:5px;background:#fff;color:#1a1a1a;width:100%;min-height:38px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#185FA5;box-shadow:0 0 0 2px #c7ddf5}
+label{font-size:11px;color:#333;font-weight:700;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em}
+button{font-family:Arial,sans-serif;cursor:pointer}
+.topbar{display:flex;align-items:center;gap:10px;padding:12px 24px;background:#185FA5;color:#fff}
+.topbar h1{font-size:15px;font-weight:700;flex:1}
+.tabs{display:flex;background:#0d3d6e;padding:0 24px;flex-wrap:wrap}
+.tab{font-size:13px;font-weight:700;padding:10px 18px;cursor:pointer;color:#a8c8e8;border-bottom:3px solid transparent;white-space:nowrap}
+.tab.active{color:#fff;border-bottom:3px solid #fff}
+.tab:hover:not(.active){color:#d0e4f4}
+.tc{display:none}.tc.active{display:block}
+.main{padding:24px;max-width:1200px;margin:0 auto}
+.card{background:#fff;border:1.5px solid #d0d5dd;border-radius:8px;padding:22px 24px;margin-bottom:16px}
+.sec{font-size:11px;font-weight:700;color:#fff;letter-spacing:.06em;text-transform:uppercase;margin:22px 0 12px;padding:8px 16px;border-radius:5px}
+.sec:first-child{margin-top:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
+.mt{margin-top:16px}
+.btn{padding:9px 20px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer}
+.btn-blue{background:#185FA5;color:#fff}
+.btn-green{background:#2E6B0F;color:#fff}
+.btn-red{background:#A32D2D;color:#fff}
+.btn-gray{background:#eee;color:#555;border:1px solid #ccc}
+.btn-orange{background:#854F0B;color:#fff}
+/* Tabla de contactos */
+.contact-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.contact-table th{text-align:left;padding:10px 12px;background:#f0f0f0;border-bottom:2px solid #ddd;font-size:11px;text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.contact-table td{padding:10px 12px;border-bottom:1px solid #eee;vertical-align:middle}
+.contact-table tr:hover td{background:#f9f9f9}
+.badge{display:inline-block;font-size:10px;padding:3px 10px;border-radius:20px;font-weight:700}
+.badge-prov{background:#EBF4FF;color:#185FA5}
+.badge-cli{background:#EAF3DE;color:#2E6B0F}
+.badge-gen{background:#FEF3E2;color:#7A4500}
+/* Búsqueda */
+.search-bar{display:flex;gap:10px;margin-bottom:16px;align-items:center}
+.search-bar input{flex:1;max-width:400px}
+/* Contraseñas */
+.pwd-item{background:#fff;border:1.5px solid #ddd;border-left:4px solid #185FA5;border-radius:7px;padding:14px 18px;margin-bottom:10px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:center}
+.pwd-item.personal{border-left-color:#2E6B0F}
+.pwd-item.bancario{border-left-color:#A32D2D}
+.pwd-item.proveedor{border-left-color:#854F0B}
+.pwd-val{font-family:monospace;font-size:14px;font-weight:700;letter-spacing:2px;background:#f5f5f5;padding:6px 12px;border-radius:5px;cursor:pointer}
+.pwd-val.oculto{color:transparent;text-shadow:0 0 8px #333}
+.pwd-val.visible{color:#185FA5}
+/* Modal */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:8px;padding:24px;width:90%;max-width:560px;max-height:85vh;overflow-y:auto}
+.modal h2{font-size:16px;font-weight:700;margin-bottom:20px;color:#185FA5}
+/* Login */
+#login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0d3d6e,#185FA5);display:flex;align-items:center;justify-content:center;z-index:999}
+.login-box{background:#fff;border-radius:12px;padding:40px;width:90%;max-width:400px;text-align:center}
+.login-box h1{font-size:22px;font-weight:700;color:#185FA5;margin-bottom:8px}
+.login-box p{font-size:13px;color:#666;margin-bottom:24px}
+.login-box input{font-size:16px;padding:12px;text-align:center;letter-spacing:4px;margin-bottom:16px}
+.login-error{color:#A32D2D;font-size:13px;margin-top:8px;display:none}
+/* Stats */
+.stat-box{background:#f5f5f5;border-radius:7px;padding:14px;text-align:center}
+.stat-num{font-size:28px;font-weight:700;color:#185FA5}
+.stat-lbl{font-size:11px;color:#666;text-transform:uppercase;margin-top:4px}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>🔐 SIP-G Agenda</h1>
+    <p>Ingresá tu contraseña maestra para acceder</p>
+    <input type="password" id="pwd-input" placeholder="••••••••" onkeydown="if(event.key===&#39;Enter&#39;)verificarPwd()">
+    <br>
+    <button class="btn btn-blue" style="width:100%;padding:12px" onclick="verificarPwd()">Ingresar</button>
+    <div class="login-error" id="login-error">Contraseña incorrecta. Intentá de nuevo.</div>
+    <div style="margin-top:20px;font-size:11px;color:#999">Primera vez: la contraseña inicial es <strong>sipg2024</strong><br>Podés cambiarla en Configuración</div>
+  </div>
+</div>
+
+<div class="topbar">
+  <h1>📋 SIP-G — Agenda de Contactos y Accesos</h1>
+  <span id="sync-status" style="font-size:12px;font-weight:700;background:rgba(0,0,0,0.2);padding:4px 10px;border-radius:20px">☁️ Conectando...</span>
+  <button class="btn" style="background:#fff;color:#185FA5;padding:7px 14px" onclick="exportarTodo()">📥 Exportar</button>
+  <button class="btn" style="background:#A32D2D;color:#fff;padding:7px 14px" onclick="cerrarSesion()">🔒 Cerrar sesión</button>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(&#39;contactos&#39;,this)">👥 Contactos</div>
+  <div class="tab" onclick="showTab(&#39;passwords&#39;,this)">🔑 Claves y Accesos</div>
+  <div class="tab" onclick="showTab(&#39;seguimiento&#39;,this)">🎯 Seguimiento</div>
+  <div class="tab" onclick="showTab(&#39;recordatorios&#39;,this)">📅 Recordatorios</div>
+  <div class="tab" onclick="showTab(&#39;config&#39;,this)">⚙️ Configuración</div>
+</div>
+
+<div class="main">
+
+<!-- ===== CONTACTOS ===== -->
+<div id="tab-contactos" class="tc active">
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:24px">
+    <div class="stat-box"><div class="stat-num" id="stat-total">0</div><div class="stat-lbl">Total contactos</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-prov" style="color:#185FA5">0</div><div class="stat-lbl">Proveedores</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-cli" style="color:#2E6B0F">0</div><div class="stat-lbl">Clientes</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-gen" style="color:#7A4500">0</div><div class="stat-lbl">Generales</div></div>
+  </div>
+
+  <div class="search-bar">
+    <div style="display:flex;flex:1;max-width:500px;gap:6px;align-items:center">
+      <input type="text" id="buscar-contacto" placeholder="🔍 Buscar por nombre, empresa, rubro..." oninput="renderContactos()" style="flex:1">
+      <button id="btn-voz" onclick="iniciarVoz()" title="Buscar por voz" style="background:#185FA5;color:#fff;border:none;border-radius:6px;padding:9px 13px;cursor:pointer;font-size:16px;white-space:nowrap">🎤</button>
+    </div>
+    <select id="filtro-tipo" onchange="renderContactos()" style="width:180px">
+      <option value="">Todos los tipos</option>
+      <option value="Proveedor">Proveedores</option>
+      <option value="Cliente">Clientes</option>
+      <option value="General">Generales</option>
+    </select>
+    <button class="btn btn-green" onclick="abrirModalContacto()">+ Nuevo contacto</button>
+    <label class="btn btn-gray" style="margin:0;cursor:pointer">
+      📂 Importar CSV
+      <input type="file" accept=".csv,.vcf" style="display:none" onchange="importarCSV(this)">
+    </label>
+    <button class="btn btn-gray" onclick="imprimirContactos()">🖨 Imprimir</button>
+    <button class="btn btn-gray" onclick="exportarContactosCSV()">📊 Exportar CSV</button>
+  </div>
+
+  <!-- RESULTADO RÁPIDO VOZ -->
+  <div id="panel-voz" style="display:none;background:#EBF4FF;border:2px solid #185FA5;border-radius:8px;padding:16px;margin-bottom:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <span id="voz-estado" style="font-size:13px;font-weight:700;color:#185FA5">🎤 Escuchando...</span>
+      <button onclick="cerrarPanelVoz()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#666">✕</button>
+    </div>
+    <div id="voz-texto" style="font-size:15px;color:#333;font-style:italic;margin-bottom:12px"></div>
+    <div id="voz-resultados"></div>
+  </div>
+
+  <!-- BARRA SELECCIÓN MÚLTIPLE -->
+  <div id="barra-seleccion" style="display:none;background:#185FA5;color:#fff;padding:10px 16px;border-radius:7px;margin-bottom:12px;align-items:center;gap:12px;flex-wrap:wrap">
+    <span id="sel-count" style="font-weight:700;font-size:13px">0 seleccionados</span>
+    <span style="font-size:13px">→ Cambiar tipo a:</span>
+    <button class="btn" style="background:#fff;color:#185FA5;padding:6px 14px;font-size:12px;font-weight:700" onclick="cambiarTipoSeleccionados('Proveedor')">Proveedor</button>
+    <button class="btn" style="background:#fff;color:#2E6B0F;padding:6px 14px;font-size:12px;font-weight:700" onclick="cambiarTipoSeleccionados('Cliente')">Cliente</button>
+    <button class="btn" style="background:#fff;color:#7A4500;padding:6px 14px;font-size:12px;font-weight:700" onclick="cambiarTipoSeleccionados('General')">General</button>
+    <button class="btn" style="background:#A32D2D;color:#fff;padding:6px 14px;font-size:12px;font-weight:700;margin-left:auto" onclick="deseleccionarTodos()">✕ Cancelar</button>
+  </div>
+
+  <div class="card" style="padding:0;overflow:hidden">
+    <table class="contact-table">
+      <thead>
+        <tr>
+          <th style="width:36px"><input type="checkbox" id="chk-todos" onclick="toggleTodos(this)" title="Seleccionar todos los visibles"></th>
+          <th>Nombre / Empresa</th>
+          <th>Tipo</th>
+          <th>Rubro / Categoría</th>
+          <th>Teléfono</th>
+          <th>Email</th>
+          <th>Ciudad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-contactos">
+        <tr><td colspan="8" style="text-align:center;padding:30px;color:#888;font-style:italic">No hay contactos cargados. Agregá uno o importá un CSV.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== CONTRASEÑAS ===== -->
+<div id="tab-passwords" class="tc">
+
+  <div class="search-bar">
+    <input type="text" id="buscar-pwd" placeholder="🔍 Buscar servicio, sitio, usuario..." oninput="renderPasswords()">
+    <select id="filtro-pwd" onchange="renderPasswords()" style="width:180px">
+      <option value="">Todas las categorías</option>
+      <option value="personal">Personal</option>
+      <option value="bancario">Bancario</option>
+      <option value="proveedor">Proveedor / Comercial</option>
+      <option value="otro">Otro</option>
+    </select>
+    <button class="btn btn-blue" onclick="abrirModalPwd()">+ Nueva clave</button>
+  </div>
+
+  <div class="card" style="background:#FEF3E2;border-left:4px solid #F5A623;margin-bottom:16px">
+    <p style="font-size:12px;color:#7A4500;font-weight:600">
+      🔒 Las claves se guardan localmente en este navegador y nunca salen de tu computadora. 
+      Hacé clic sobre una contraseña para mostrarla/ocultarla.
+      Exportá regularmente como respaldo.
+    </p>
+  </div>
+
+  <div id="lista-passwords">
+    <div style="text-align:center;padding:30px;color:#888;font-style:italic">No hay claves guardadas todavía.</div>
+  </div>
+</div>
+
+<!-- ===== SEGUIMIENTO / CRM ===== -->
+<div id="tab-seguimiento" class="tc">
+  <div class="stats" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+    <div class="stat-card" style="flex:1;min-width:90px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center">
+      <div style="font-size:24px;font-weight:800;color:#185FA5" id="cl-total">0</div>
+      <div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em">Total</div>
+    </div>
+    <div class="stat-card" style="flex:1;min-width:90px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center">
+      <div style="font-size:24px;font-weight:800;color:#6B7A99" id="cl-nuevo">0</div>
+      <div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em">Nuevos</div>
+    </div>
+    <div class="stat-card" style="flex:1;min-width:90px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center">
+      <div style="font-size:24px;font-weight:800;color:#C07000" id="cl-negociando">0</div>
+      <div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em">Negociando</div>
+    </div>
+    <div class="stat-card" style="flex:1;min-width:90px;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px;text-align:center">
+      <div style="font-size:24px;font-weight:800;color:#2E6B0F" id="cl-cerrado">0</div>
+      <div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em">Cerrados</div>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="buscar-cliente" placeholder="🔍 Buscar cliente por nombre, tel\u00e9fono, modelo..." oninput="renderClientes()" style="flex:1">
+    <select id="filtro-estado" onchange="renderClientes()" style="width:160px">
+      <option value="">Todos los estados</option>
+      <option value="Nuevo">Nuevo</option>
+      <option value="Contactado">Contactado</option>
+      <option value="Visit\u00f3">Visit\u00f3</option>
+      <option value="Negociando">Negociando</option>
+      <option value="Cerrado">Cerrado</option>
+    </select>
+    <button class="btn btn-green" onclick="abrirModalCliente()">+ Nuevo cliente</button>
+    <button class="btn btn-gray" onclick="imprimirClientes()">🖨 Imprimir</button>
+    <button class="btn btn-gray" onclick="exportarClientesCSV()">📊 Exportar CSV</button>
+  </div>
+
+  <div id="lista-clientes"></div>
+</div>
+
+<!-- ===== RECORDATORIOS ===== -->
+<div id="tab-recordatorios" class="tc">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+    <div style="font-size:18px;font-weight:800;color:#185FA5">📅 Recordatorios pendientes</div>
+    <span style="background:#8A3FC0;color:#fff;font-size:13px;font-weight:700;padding:3px 12px;border-radius:20px" id="rec-total">0</span>
+  </div>
+  <div id="lista-recordatorios"></div>
+</div>
+
+<!-- ===== CONFIG ===== -->
+<div id="tab-config" class="tc">
+  <div class="sec" style="background:#185FA5">Cambiar contraseña maestra</div>
+  <div class="card">
+    <div class="g3">
+      <div><label>Contraseña actual</label><input type="password" id="pwd-actual" placeholder="••••••••"></div>
+      <div><label>Nueva contraseña</label><input type="password" id="pwd-nueva" placeholder="••••••••"></div>
+      <div><label>Confirmar nueva contraseña</label><input type="password" id="pwd-confirm" placeholder="••••••••"></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+      <button class="btn btn-blue" onclick="cambiarPassword()">Cambiar contraseña</button>
+      <span id="pwd-msg" style="font-size:13px"></span>
+    </div>
+  </div>
+
+  <div class="sec" style="background:#2E6B0F">Datos y respaldo</div>
+  <div class="card">
+    <div class="g3">
+      <div>
+        <p style="font-size:13px;font-weight:700;margin-bottom:8px">Exportar todo</p>
+        <p style="font-size:12px;color:#666;margin-bottom:12px">Descarga un archivo JSON con todos tus contactos y claves como respaldo.</p>
+        <button class="btn btn-green" onclick="exportarTodo()">📥 Exportar respaldo</button>
+      </div>
+      <div>
+        <p style="font-size:13px;font-weight:700;margin-bottom:8px">Importar respaldo</p>
+        <p style="font-size:12px;color:#666;margin-bottom:12px">Restaura datos desde un archivo de respaldo JSON exportado anteriormente.</p>
+        <label class="btn btn-gray" style="display:inline-block;cursor:pointer">
+          📂 Importar respaldo
+          <input type="file" accept=".json" style="display:none" onchange="importarRespaldo(this)">
+        </label>
+      </div>
+      <div>
+        <p style="font-size:13px;font-weight:700;margin-bottom:8px">Borrar todo</p>
+        <p style="font-size:12px;color:#666;margin-bottom:12px">Elimina todos los datos guardados. Esta acción no se puede deshacer.</p>
+        <button class="btn btn-red" onclick="borrarTodo()">🗑 Borrar todo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="background:#854F0B">Recuperar datos de versión anterior</div>
+  <div class="card">
+    <p style="font-size:13px;color:#555;margin-bottom:14px">Si tus contactos estaban en una versión anterior de la agenda, usá esta herramienta para detectarlos y recuperarlos automáticamente.</p>
+    <button class="btn btn-orange" onclick="diagnosticarLocalStorage()">🔍 Buscar datos de versiones anteriores</button>
+    <div id="diag-resultado" style="margin-top:14px;font-size:13px"></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<!-- Modal Contacto -->
+<div class="modal-bg" id="modal-contacto">
+  <div class="modal">
+    <h2 id="modal-contacto-titulo">Nuevo contacto</h2>
+    <input type="hidden" id="contacto-id">
+    <div class="g2">
+      <div><label>Nombre completo *</label><input type="text" id="c-nombre" placeholder="Juan García"></div>
+      <div><label>Empresa / Razón social</label><input type="text" id="c-empresa" placeholder="Empresa S.A."></div>
+    </div>
+    <div class="g3 mt">
+      <div><label>Tipo *</label>
+        <select id="c-tipo">
+          <option value="Proveedor">Proveedor</option>
+          <option value="Cliente">Cliente</option>
+          <option value="General">General</option>
+        </select>
+      </div>
+      <div><label>Rubro / Categoría</label><input type="text" id="c-rubro" placeholder="Ej: OSB, EPS, Zinguería"></div>
+      <div><label>Ciudad / Provincia</label><input type="text" id="c-ciudad" placeholder="Corrientes"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Teléfono principal</label><input type="text" id="c-tel" placeholder="ej: 3548510049"></div>
+      <div><label>WhatsApp</label><input type="text" id="c-wa" placeholder="ej: 3548510049"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Teléfono oficina</label><input type="text" id="c-tel2" placeholder="ej: 3548510049"></div>
+      <div><label>Teléfono alternativo</label><input type="text" id="c-tel3" placeholder="ej: 3548510049"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Email</label><input type="email" id="c-email" placeholder="email@ejemplo.com"></div>
+      <div><label>Sitio web</label><input type="text" id="c-web" placeholder="www.sitio.com"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Dirección</label><input type="text" id="c-dir" placeholder="Calle y número"></div>
+      <div><label>Localidad</label><input type="text" id="c-localidad" placeholder="Goya"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Provincia</label><input type="text" id="c-provincia" placeholder="Corrientes"></div>
+      <div><label>Código postal</label><input type="text" id="c-cp" placeholder="3450"></div>
+    </div>
+    <div class="mt"><label>Notas / Observaciones</label><textarea id="c-notas" rows="3" placeholder="Condiciones comerciales, horarios, contacto alternativo..."></textarea></div>
+    <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end">
+      <button class="btn btn-gray" onclick="cerrarModal(&#39;modal-contacto&#39;)">Cancelar</button>
+      <button class="btn btn-green" onclick="guardarContacto()">💾 Guardar contacto</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Cliente / Seguimiento -->
+<div class="modal-bg" id="modal-cliente">
+  <div class="modal">
+    <h2>Cliente / Seguimiento</h2>
+    <input type="hidden" id="cli-idx">
+    <div class="g2">
+      <div><label>Nombre completo *</label><input type="text" id="cli-nombre" placeholder="Juan García"></div>
+      <div><label>Teléfono</label><input type="text" id="cli-tel" placeholder="ej: 3777123456"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Email</label><input type="email" id="cli-email" placeholder="email@ejemplo.com"></div>
+      <div><label>Estado *</label>
+        <select id="cli-estado">
+          <option value="Nuevo">Nuevo</option>
+          <option value="Contactado">Contactado</option>
+          <option value="Visit\u00f3">Visit\u00f3</option>
+          <option value="Negociando">Negociando</option>
+          <option value="Cerrado">Cerrado</option>
+        </select>
+      </div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Modelo de interés</label><input type="text" id="cli-modelo" placeholder="Ej: Showroom / Modelo B 2 plantas"></div>
+      <div><label>Lote de interés</label><input type="text" id="cli-lote" placeholder="Ej: Lote 23"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Presupuesto estimado</label><input type="text" id="cli-presupuesto" placeholder="Ej: USD 80.000"></div>
+      <div><label>Origen / Cómo llegó</label><input type="text" id="cli-origen" placeholder="Ej: Visitó showroom / Recomendado / Redes"></div>
+    </div>
+    <div class="mt"><label>Notas / Observaciones</label><textarea id="cli-notas" rows="3" placeholder="Qué busca, particularidades, próximos pasos..."></textarea></div>
+    <div style="margin-top:14px;padding:14px;background:#F6EEFC;border:1px solid #d9c2ee;border-radius:8px">
+      <div style="font-size:12px;font-weight:700;color:#8A3FC0;margin-bottom:8px">📅 Recordatorio (opcional)</div>
+      <div class="g3">
+        <div><label>Fecha</label><input type="date" id="cli-rec-fecha"></div>
+        <div><label>Hora</label><input type="time" id="cli-rec-hora"></div>
+        <div><label>¿Qué hacer?</label><input type="text" id="cli-rec-nota" placeholder="Ej: llamar para cerrar precio"></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end">
+      <button class="btn btn-gray" onclick="cerrarModal(&#39;modal-cliente&#39;)">Cancelar</button>
+      <button class="btn btn-green" onclick="guardarCliente()">💾 Guardar cliente</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Contraseña -->
+<div class="modal-bg" id="modal-pwd">
+  <div class="modal">
+    <h2 id="modal-pwd-titulo">Nueva clave / acceso</h2>
+    <input type="hidden" id="pwd-id">
+    <div class="g2">
+      <div><label>Servicio / Sitio *</label><input type="text" id="p-servicio" placeholder="Ej: Gmail, Banco, MercadoLibre"></div>
+      <div><label>Categoría</label>
+        <select id="p-cat">
+          <option value="personal">Personal</option>
+          <option value="bancario">Bancario</option>
+          <option value="proveedor">Proveedor / Comercial</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+    </div>
+    <div class="g2 mt">
+      <div><label>Usuario / Email</label><input type="text" id="p-usuario" placeholder="usuario@email.com"></div>
+      <div><label>Contraseña / PIN *</label><input type="text" id="p-pwd" placeholder="Ingresá la contraseña"></div>
+    </div>
+    <div class="g2 mt">
+      <div><label>URL / Dirección web</label><input type="text" id="p-url" placeholder="www.sitio.com"></div>
+      <div><label>Teléfono asociado</label><input type="text" id="p-tel" placeholder="ej: 3548510049"></div>
+    </div>
+    <div class="mt"><label>Notas adicionales</label><textarea id="p-notas" rows="2" placeholder="Preguntas de seguridad, datos adicionales..."></textarea></div>
+    <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end">
+      <button class="btn btn-gray" onclick="cerrarModal(&#39;modal-pwd&#39;)">Cancelar</button>
+      <button class="btn btn-blue" onclick="guardarPwd()">💾 Guardar clave</button>
+    </div>
+  </div>
+</div>
+
+
+<script type="module">
+// ============ FIREBASE CONFIG ============
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCzpvO7wOsTD0kHqzYIU49Md04HXjnhW9A",
+  authDomain: "sipg-agenda.firebaseapp.com",
+  projectId: "sipg-agenda",
+  storageBucket: "sipg-agenda.firebasestorage.app",
+  messagingSenderId: "607168292182",
+  appId: "1:607168292182:web:544658507cc5412982a2f7",
+  databaseURL: "https://sipg-agenda-default-rtdb.firebaseio.com"
+};
+
+const _app = initializeApp(firebaseConfig);
+const _db = getDatabase(_app);
+const _dbRef = ref(_db, 'sipg_agenda');
+
+// Exponer al scope global para que el script normal lo use
+window._fbSet = function(data){ return set(_dbRef, data); };
+window._fbListen = function(cb, errCb){ onValue(_dbRef, cb, errCb); };
+window._firebaseReady = true;
+
+// Disparar evento para que el script normal sepa que Firebase está listo
+window.dispatchEvent(new Event('firebase-ready'));
+</script>
+
+<script>
+// ============ VARIABLES GLOBALES ============
+var STORAGE_KEY = 'sipg-agenda-v1';
+var PWD_KEY = 'sipg-agenda-master';
+var SESSION_KEY = 'sipg-agenda-session';
+var contactos = [];
+var clientes = [];
+var ESTADOS_CLIENTE = ['Nuevo','Contactado','Visitó','Negociando','Cerrado'];
+var COLOR_ESTADO = {'Nuevo':'#6B7A99','Contactado':'#185FA5','Visitó':'#8A3FC0','Negociando':'#C07000','Cerrado':'#2E6B0F'};
+var passwords = [];
+var editandoContacto = null;
+var editandoPwd = null;
+var _firebaseListening = false;
+
+// ---- LOGIN ----
+function verificarPwd(){
+  var input = document.getElementById('pwd-input').value;
+  var stored = localStorage.getItem(PWD_KEY) || 'sipg2024';
+  if(input === stored){
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.body.style.display = 'block';
+    cargarDatos();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+  }
+}
+
+function cerrarSesion(){
+  if(!confirm('¿Cerrar sesión?')) return;
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+document.getElementById('pwd-input').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') verificarPwd();
+});
+
+// ---- SYNC STATUS ----
+function setSyncStatus(estado, color){
+  var el = document.getElementById('sync-status');
+  if(el){ el.textContent = estado; el.style.color = color || '#fff'; }
+}
+
+// ---- DATOS FIREBASE ----
+function guardarDatos(){
+  var payload = {
+    contactos: contactos,
+    passwords: passwords,
+    clientes: clientes,
+    ultimaActualizacion: new Date().toISOString()
+  };
+  if(window._firebaseReady && window._fbSet){
+    setSyncStatus('⏳ Guardando...', '#C07000');
+    window._fbSet(payload).then(function(){
+      setSyncStatus('☁️ Sincronizado', '#2E6B0F');
+    }).catch(function(err){
+      setSyncStatus('⚠️ Error sync', '#A32D2D');
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    });
+  } else {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  }
+}
+
+function cargarDatos(){
+  if(_firebaseListening) return;
+  if(window._firebaseReady && window._fbListen){
+    _iniciarFirebase();
+  } else {
+    // Firebase no listo aún — esperar el evento
+    window.addEventListener('firebase-ready', function(){
+      if(!_firebaseListening) _iniciarFirebase();
+    }, {once: true});
+    // Timeout fallback: si Firebase no responde en 5 seg, cargar local
+    setTimeout(function(){
+      if(!_firebaseListening) _cargarLocal();
+    }, 5000);
+  }
+}
+
+function _iniciarFirebase(){
+  if(_firebaseListening) return;
+  _firebaseListening = true;
+  setSyncStatus('⏳ Conectando...', '#C07000');
+  window._fbListen(function(snapshot){
+    var data = snapshot.val();
+    if(data){
+      contactos = Array.isArray(data.contactos) ? data.contactos : [];
+      passwords = Array.isArray(data.passwords) ? data.passwords : [];
+      clientes = Array.isArray(data.clientes) ? data.clientes : [];
+    } else {
+      // Primera vez: migrar desde localStorage si hay datos
+      _migrarDesdeLocal();
+    }
+    _renderTodo();
+    setSyncStatus('☁️ Sincronizado (' + contactos.length + ' contactos)', '#90EE90');
+  }, function(error){
+    setSyncStatus('⚠️ Sin conexión — modo local', '#A32D2D');
+    _cargarLocal();
+  });
+}
+
+function _cargarLocal(){
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var d = raw ? JSON.parse(raw) : {};
+    contactos = Array.isArray(d.contactos) ? d.contactos : [];
+    passwords = Array.isArray(d.passwords) ? d.passwords : [];
+    clientes = Array.isArray(d.clientes) ? d.clientes : [];
+  } catch(e){ contactos=[]; passwords=[]; clientes=[]; }
+  _renderTodo();
+}
+
+function _migrarDesdeLocal(){
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    var d = JSON.parse(raw);
+    contactos = Array.isArray(d.contactos) ? d.contactos : [];
+    passwords = Array.isArray(d.passwords) ? d.passwords : [];
+    clientes = Array.isArray(d.clientes) ? d.clientes : [];
+    if(contactos.length > 0){
+      guardarDatos();
+      setSyncStatus('☁️ Migrado: ' + contactos.length + ' contactos subidos', '#90EE90');
+    }
+  } catch(e){}
+}
+
+function _renderTodo(){
+  renderContactos();
+  renderPasswords();
+  renderClientes();
+  renderRecordatorios();
+  actualizarStats();
+  setTimeout(avisarRecordatorios, 800);
+}
+
+// ---- TABS ----
+function showTab(n, btn){
+  document.querySelectorAll('.tc').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('tab-'+n).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ---- CONTACTOS ----
+function abrirModalContacto(id){
+  editandoContacto = (id !== undefined) ? id : null;
+  document.getElementById('modal-contacto-titulo').textContent = (id !== undefined) ? 'Editar contacto' : 'Nuevo contacto';
+  var campos = ['nombre','empresa','rubro','ciudad','tel','wa','tel2','tel3','email','web','dir','localidad','provincia','cp','notas'];
+  if(id !== undefined){
+    var c = contactos[id];
+    campos.forEach(function(f){
+      var e = document.getElementById('c-'+f);
+      if(e) e.value = c[f] || '';
+    });
+    document.getElementById('c-tipo').value = c.tipo || 'General';
+  } else {
+    campos.forEach(function(f){
+      var e = document.getElementById('c-'+f);
+      if(e) e.value = '';
+    });
+    document.getElementById('c-tipo').value = 'Proveedor';
+  }
+  document.getElementById('modal-contacto').classList.add('open');
+}
+
+function guardarContacto(){
+  var nombre = document.getElementById('c-nombre').value.trim();
+  if(!nombre){ alert('El nombre es obligatorio.'); return; }
+  var c = {
+    nombre: nombre,
+    empresa: document.getElementById('c-empresa').value,
+    tipo: document.getElementById('c-tipo').value,
+    rubro: document.getElementById('c-rubro').value,
+    ciudad: document.getElementById('c-ciudad').value,
+    tel: document.getElementById('c-tel').value,
+    wa: document.getElementById('c-wa').value,
+    tel2: document.getElementById('c-tel2').value,
+    tel3: document.getElementById('c-tel3').value,
+    email: document.getElementById('c-email').value,
+    web: document.getElementById('c-web').value,
+    dir: document.getElementById('c-dir').value,
+    localidad: document.getElementById('c-localidad').value,
+    provincia: document.getElementById('c-provincia').value,
+    cp: document.getElementById('c-cp').value,
+    notas: document.getElementById('c-notas').value,
+    fecha: new Date().toLocaleDateString('es-AR')
+  };
+  if(editandoContacto !== null){
+    contactos[editandoContacto] = c;
+  } else {
+    contactos.push(c);
+  }
+  guardarDatos();
+  cerrarModal('modal-contacto');
+  renderContactos();
+  actualizarStats();
+}
+
+function eliminarContacto(id){
+  if(!confirm('¿Eliminar este contacto?')) return;
+  contactos.splice(id, 1);
+  guardarDatos();
+  renderContactos();
+  actualizarStats();
+}
+
+function renderContactos(){
+  var buscar = document.getElementById('buscar-contacto').value.toLowerCase();
+  var filtroTipo = document.getElementById('filtro-tipo').value;
+  var tbody = document.getElementById('tabla-contactos');
+  var filtrados = contactos.filter(function(c, i){
+    var match = (c.nombre+c.empresa+c.rubro+c.ciudad+c.tel+c.email).toLowerCase().includes(buscar);
+    var tipo = !filtroTipo || c.tipo === filtroTipo;
+    return match && tipo;
+  });
+  if(!filtrados.length){
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#888;font-style:italic">No se encontraron contactos.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtrados.map(function(c){
+    var idx = contactos.indexOf(c);
+    var badgeClass = c.tipo==='Proveedor'?'badge-prov':c.tipo==='Cliente'?'badge-cli':'badge-gen';
+    var chk = '<td><input type="checkbox" class="chk-contacto" data-idx="'+idx+'" onchange="actualizarSeleccion()"></td>';
+    var wa = c.wa ? '<a href="https://wa.me/'+c.wa.replace(/\D/g,'')+'" target="_blank" style="color:#25D366;font-weight:700;text-decoration:none">💬</a> ' : '';
+    var dirCompleta = [c.dir, c.localidad, c.provincia, c.cp].filter(Boolean).join(', ');
+    var formatWA = function(num){
+      var n = num.replace(/\D/g,'');
+      if(n.startsWith('54')) return n;
+      if(n.startsWith('0')) return '54' + n.slice(1);
+      return '54' + n;
+    };
+    var waLogo = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366" style="vertical-align:middle;margin-left:4px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.549 4.122 1.515 5.861L.057 23.428a.75.75 0 00.906.974l5.857-1.53A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.688-.538-5.194-1.467l-.372-.223-3.853 1.007 1.026-3.748-.243-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>';
+    var telPrincipal = c.tel ?
+      '<span style="color:#1a1a1a;font-weight:700">📞 '+c.tel+'</span> ' +
+      '<a href="https://wa.me/'+formatWA(c.tel)+'" target="_blank" style="text-decoration:none" title="Abrir chat en WhatsApp">'+waLogo+'</a>'
+      : '';
+    var telWA = c.wa ?
+      '<br>'+waLogo+' <a href="https://wa.me/'+formatWA(c.wa)+'" target="_blank" style="color:#25D366;text-decoration:none;font-size:12px;font-weight:700">'+c.wa+' — Chat WA</a>'
+      : '';
+    var telOfi = c.tel2 ? '<br><span style="font-size:11px;color:#666">🏢 '+c.tel2+'</span>' : '';
+    var telAlt = c.tel3 ? '<br><span style="font-size:11px;color:#666">📱 '+c.tel3+'</span>' : '';
+    var webUrl = c.web ? c.web.replace('http://','').replace('https://','') : '';
+    return '<tr>'+
+      chk+
+      '<td>'+
+        '<strong>'+c.nombre+'</strong>'+
+        (c.empresa?'<br><span style="font-size:11px;color:#666">'+c.empresa+'</span>':'')+
+        (dirCompleta?'<br><a href="https://www.google.com/maps/search/'+encodeURIComponent(dirCompleta)+'" target="_blank" style="font-size:11px;color:#888;text-decoration:none">📍 '+dirCompleta+'</a>':'')+
+        (c.notas?'<br><span style="font-size:11px;color:#aaa;font-style:italic">'+c.notas+'</span>':'')+
+      '</td>'+
+      '<td><span class="badge '+badgeClass+'">'+c.tipo+'</span></td>'+
+      '<td>'+(c.rubro||'—')+'</td>'+
+      '<td>'+telPrincipal+telWA+telOfi+telAlt+'</td>'+
+      '<td>'+
+        (c.email?'<a href="https://mail.google.com/mail/?view=cm&to='+c.email+'" target="_blank" style="color:#D44638;text-decoration:none">📧 '+c.email+'</a>':'—')+
+        (c.web?'<br><a href="https://'+webUrl+'" target="_blank" style="font-size:11px;color:#185FA5;text-decoration:none">🌐 '+webUrl+'</a>':'')+
+      '</td>'+
+      '<td>'+(c.localidad||c.ciudad||'—')+(c.provincia?'<br><span style="font-size:11px;color:#888">'+c.provincia+'</span>':'')+'</td>'+
+      '<td style="white-space:nowrap">'+
+        '<button class="btn btn-gray" style="padding:4px 8px;font-size:11px;margin-right:4px" onclick="abrirModalContacto('+idx+')">✏️</button>'+
+        '<button class="btn btn-gray" style="padding:4px 8px;font-size:11px;margin-right:4px" onclick="imprimirFichaContacto('+idx+')" title="Imprimir ficha">🖨</button>'+
+        '<button class="btn" style="padding:4px 8px;font-size:11px;margin-right:4px;background:#8A3FC0;color:#fff" onclick="pasarASeguimiento('+idx+')" title="Pasar a seguimiento">🎯</button>'+
+        '<button class="btn btn-red" style="padding:4px 8px;font-size:11px" onclick="eliminarContacto('+idx+')">🗑</button>'+
+      '</td>'+
+    '</tr>';
+  }).join('');
+}
+
+
+// ============ SEGUIMIENTO / CRM ============
+function renderClientes(){
+  var cont=document.getElementById('lista-clientes');
+  if(!cont) return;
+  if(!Array.isArray(clientes)) clientes=[];
+  var buscar=(document.getElementById('buscar-cliente')||{}).value||'';
+  buscar=buscar.toLowerCase();
+  var filtro=(document.getElementById('filtro-estado')||{}).value||'';
+
+  var lista=clientes.filter(function(cl){
+    var txt=((cl.nombre||'')+' '+(cl.tel||'')+' '+(cl.modelo||'')+' '+(cl.lote||'')).toLowerCase();
+    var okB=!buscar||txt.indexOf(buscar)>=0;
+    var okF=!filtro||cl.estado===filtro;
+    return okB&&okF;
+  });
+
+  // stats
+  setTxt('cl-total',clientes.length);
+  setTxt('cl-nuevo',clientes.filter(function(c){return c.estado==='Nuevo';}).length);
+  setTxt('cl-negociando',clientes.filter(function(c){return c.estado==='Negociando';}).length);
+  setTxt('cl-cerrado',clientes.filter(function(c){return c.estado==='Cerrado';}).length);
+
+  if(!lista.length){
+    cont.innerHTML='<div style="text-align:center;padding:40px;color:#999;font-style:italic">'+(clientes.length?'No hay clientes que coincidan con la b\u00fasqueda.':'A\u00fan no hay clientes cargados. Tocá "+ Nuevo cliente" para empezar el seguimiento.')+'</div>';
+    return;
+  }
+
+  var html='';
+  lista.forEach(function(cl){
+    var idx=clientes.indexOf(cl);
+    var color=COLOR_ESTADO[cl.estado]||'#6B7A99';
+    var telWA=(cl.tel||'').replace(/\D/g,'');
+    if(telWA && !telWA.indexOf('0')===0 && telWA.indexOf('54')!==0) telWA='54'+telWA;
+    var ultContacto=cl.historial&&cl.historial.length?cl.historial[cl.historial.length-1]:null;
+    html+='<div class="card" style="margin-bottom:12px;border-left:5px solid '+color+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">'+
+        '<div style="flex:1;min-width:200px">'+
+          '<div style="font-size:16px;font-weight:800;color:#1a1a1a">'+(cl.nombre||'Sin nombre')+'</div>'+
+          '<div style="font-size:12px;color:#666;margin-top:2px">'+
+            (cl.tel?'\ud83d\udcde '+cl.tel+'   ':'')+
+            (cl.email?'\u2709\ufe0f '+cl.email:'')+
+          '</div>'+
+          (cl.modelo||cl.lote?'<div style="font-size:12px;color:#666;margin-top:2px">'+(cl.modelo?'\ud83c\udfe0 '+cl.modelo:'')+(cl.lote?'   \ud83d\udccd Lote '+cl.lote:'')+'</div>':'')+
+          (cl.presupuesto?'<div style="font-size:12px;color:#2E6B0F;font-weight:700;margin-top:2px">\ud83d\udcb0 '+cl.presupuesto+'</div>':'')+
+        '</div>'+
+        '<div style="text-align:right">'+
+          '<span style="display:inline-block;background:'+color+';color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px">'+cl.estado+'</span>'+
+          '<div style="font-size:10px;color:#aaa;margin-top:4px">Ingreso: '+(cl.fechaIngreso||'\u2014')+'</div>'+
+        '</div>'+
+      '</div>'+
+      (cl.notas?'<div style="font-size:12px;color:#555;margin-top:8px;padding:8px;background:#f8f8f8;border-radius:6px">'+cl.notas+'</div>':'')+
+      (ultContacto?'<div style="font-size:11px;color:#888;margin-top:8px">\ud83d\udd52 \u00daltimo contacto: <strong>'+ultContacto.fecha+'</strong> \u2014 '+ultContacto.texto+'</div>':'')+
+      (cl.recordatorio&&cl.recordatorio.fecha&&!cl.recordatorio.cumplido?'<div style="font-size:11px;color:#8A3FC0;margin-top:6px;font-weight:700">\ud83d\udcc5 Recordatorio: '+new Date(cl.recordatorio.fecha+'T00:00:00').toLocaleDateString('es-AR')+' '+(cl.recordatorio.hora||'')+(cl.recordatorio.nota?' \u2014 '+cl.recordatorio.nota:'')+'</div>':'')+
+      '<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">'+
+        (cl.tel?'<a href="https://wa.me/'+telWA+'" target="_blank" style="background:#25D366;color:#fff;text-decoration:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700">\ud83d\udcac WhatsApp</a>':'')+
+        (cl.tel?'<a href="tel:'+cl.tel+'" style="background:#185FA5;color:#fff;text-decoration:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700">\ud83d\udcde Llamar</a>':'')+
+        '<button onclick="agregarContactoHist('+idx+')" style="background:#8A3FC0;color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">\u2795 Registrar contacto</button>'+
+        '<button onclick="abrirModalCliente('+idx+')" style="background:#eee;color:#333;border:1px solid #ccc;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">\u270f\ufe0f Editar</button>'+
+        '<button onclick="imprimirFichaCliente('+idx+')" style="background:#185FA5;color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">\ud83d\udda8 Imprimir ficha</button>'+
+        (cl.historial&&cl.historial.length?'<button onclick="verHistorial('+idx+')" style="background:#f0f0f0;color:#555;border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer">\ud83d\udcdc Historial ('+cl.historial.length+')</button>':'')+
+        '<button onclick="eliminarCliente('+idx+')" style="background:#A32D2D;color:#fff;border:none;border-radius:6px;padding:6px 10px;font-size:12px;cursor:pointer">\ud83d\uddd1</button>'+
+      '</div>'+
+    '</div>';
+  });
+  cont.innerHTML=html;
+}
+
+function abrirModalCliente(idx){
+  var cl=(idx!=null&&clientes[idx])?clientes[idx]:{estado:'Nuevo',historial:[]};
+  document.getElementById('cli-idx').value=(idx!=null?idx:'');
+  document.getElementById('cli-nombre').value=cl.nombre||'';
+  document.getElementById('cli-tel').value=cl.tel||'';
+  document.getElementById('cli-email').value=cl.email||'';
+  document.getElementById('cli-modelo').value=cl.modelo||'';
+  document.getElementById('cli-lote').value=cl.lote||'';
+  document.getElementById('cli-presupuesto').value=cl.presupuesto||'';
+  document.getElementById('cli-origen').value=cl.origen||'';
+  document.getElementById('cli-estado').value=cl.estado||'Nuevo';
+  document.getElementById('cli-notas').value=cl.notas||'';
+  var rec=cl.recordatorio||{};
+  document.getElementById('cli-rec-fecha').value=rec.fecha||'';
+  document.getElementById('cli-rec-hora').value=rec.hora||'';
+  document.getElementById('cli-rec-nota').value=rec.nota||'';
+  document.getElementById('modal-cliente').classList.add('open');
+}
+
+function guardarCliente(){
+  var idx=document.getElementById('cli-idx').value;
+  var cl={
+    nombre:document.getElementById('cli-nombre').value.trim(),
+    tel:document.getElementById('cli-tel').value.trim(),
+    email:document.getElementById('cli-email').value.trim(),
+    modelo:document.getElementById('cli-modelo').value.trim(),
+    lote:document.getElementById('cli-lote').value.trim(),
+    presupuesto:document.getElementById('cli-presupuesto').value.trim(),
+    origen:document.getElementById('cli-origen').value.trim(),
+    estado:document.getElementById('cli-estado').value,
+    notas:document.getElementById('cli-notas').value.trim()
+  };
+  if(!cl.nombre){alert('El nombre es obligatorio.');return;}
+  // Recordatorio
+  var recFecha=document.getElementById('cli-rec-fecha').value;
+  var recHora=document.getElementById('cli-rec-hora').value;
+  var recNota=document.getElementById('cli-rec-nota').value.trim();
+  if(recFecha){
+    cl.recordatorio={fecha:recFecha,hora:recHora||'09:00',nota:recNota,cumplido:false};
+  } else {
+    cl.recordatorio=null;
+  }
+  if(idx!==''){
+    cl.fechaIngreso=clientes[idx].fechaIngreso;
+    cl.historial=clientes[idx].historial||[];
+    // Si había recordatorio cumplido y no cambió la fecha, preservar estado
+    if(clientes[idx].recordatorio && cl.recordatorio && clientes[idx].recordatorio.fecha===cl.recordatorio.fecha && clientes[idx].recordatorio.cumplido) cl.recordatorio.cumplido=true;
+    clientes[idx]=cl;
+  } else {
+    cl.fechaIngreso=new Date().toLocaleDateString('es-AR');
+    cl.historial=[];
+    clientes.push(cl);
+  }
+  guardarDatos();renderClientes();
+  cerrarModal('modal-cliente');
+}
+
+function eliminarCliente(idx){
+  if(!confirm('\u00bfEliminar a '+(clientes[idx].nombre||'este cliente')+' del seguimiento?'))return;
+  clientes.splice(idx,1);
+  guardarDatos();renderClientes();
+}
+
+function agregarContactoHist(idx){
+  var texto=prompt('Registrar contacto con '+clientes[idx].nombre+'\n\n\u00bfQu\u00e9 pas\u00f3? (llamada, visita, mensaje, etc.)');
+  if(!texto)return;
+  if(!clientes[idx].historial)clientes[idx].historial=[];
+  clientes[idx].historial.push({fecha:new Date().toLocaleDateString('es-AR')+' '+new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}),texto:texto});
+  guardarDatos();renderClientes();
+}
+
+function verHistorial(idx){
+  var cl=clientes[idx];
+  var h=cl.historial||[];
+  var txt='HISTORIAL DE CONTACTO \u2014 '+cl.nombre+'\n\n';
+  if(!h.length){txt+='Sin registros a\u00fan.';}
+  else{h.slice().reverse().forEach(function(e){txt+='\u2022 '+e.fecha+'\n  '+e.texto+'\n\n';});}
+  alert(txt);
+}
+
+function diagnosticarLocalStorage(){
+  var res = document.getElementById('diag-resultado');
+  // Claves conocidas de versiones anteriores
+  var clavesConocidas = ['sipg-agenda-v1','sipg-agenda','sipg_agenda','sipg-data','agenda-sipg'];
+  var encontradas = [];
+  for(var i=0; i<localStorage.length; i++){
+    var k = localStorage.key(i);
+    encontradas.push(k);
+  }
+  var html = '<strong>Claves encontradas en localStorage:</strong><br>';
+  if(!encontradas.length){
+    html += '<span style="color:#A32D2D">⚠️ No hay ningún dato guardado en este navegador.</span>';
+    res.innerHTML = html;
+    return;
+  }
+  html += '<ul style="margin:8px 0 12px 16px">';
+  encontradas.forEach(function(k){
+    try {
+      var val = localStorage.getItem(k);
+      var parsed = JSON.parse(val);
+      var nCont = Array.isArray(parsed.contactos) ? parsed.contactos.length : '?';
+      var nCli = Array.isArray(parsed.clientes) ? parsed.clientes.length : 0;
+      var nPwd = Array.isArray(parsed.passwords) ? parsed.passwords.length : 0;
+      html += '<li style="margin-bottom:6px"><code style="background:#f0f0f0;padding:2px 6px;border-radius:3px">'+k+'</code> — '+nCont+' contactos, '+nCli+' clientes, '+nPwd+' claves';
+      if(k !== STORAGE_KEY && (parseInt(nCont)>0 || parseInt(nCli)>0)){
+        html += ' <button onclick="recuperarDesde(\''+k+'\')" style="background:#2E6B0F;color:#fff;border:none;border-radius:4px;padding:3px 10px;font-size:11px;font-weight:700;cursor:pointer;margin-left:8px">⬆️ Recuperar estos datos</button>';
+      } else if(k === STORAGE_KEY) {
+        html += ' <span style="color:#2E6B0F;font-weight:700">(esta versión)</span>';
+      }
+      html += '</li>';
+    } catch(e) {
+      html += '<li><code style="background:#f0f0f0;padding:2px 6px;border-radius:3px">'+k+'</code> — no es formato SIPG</li>';
+    }
+  });
+  html += '</ul>';
+  res.innerHTML = html;
+}
+
+function recuperarDesde(clave){
+  try {
+    var raw = localStorage.getItem(clave);
+    var d = JSON.parse(raw);
+    var nCont = Array.isArray(d.contactos) ? d.contactos.length : 0;
+    var nCli = Array.isArray(d.clientes) ? d.clientes.length : 0;
+    if(!confirm('¿Recuperar '+nCont+' contactos y '+nCli+' clientes desde "'+clave+'"?\nEsto REEMPLAZA los datos actuales.')){return;}
+    contactos = Array.isArray(d.contactos) ? d.contactos : contactos;
+    passwords = Array.isArray(d.passwords) ? d.passwords : passwords;
+    clientes = Array.isArray(d.clientes) ? d.clientes : clientes;
+    guardarDatos();
+    renderContactos(); renderClientes(); actualizarStats();
+    document.getElementById('diag-resultado').innerHTML = '<span style="color:#2E6B0F;font-weight:700">✅ Datos recuperados: '+contactos.length+' contactos, '+clientes.length+' clientes.</span>';
+    alert('✅ Datos recuperados correctamente. Ya están disponibles en la agenda.');
+  } catch(e) {
+    alert('Error al recuperar datos: '+e.message);
+  }
+}
+
+function setTxt(id,val){var el=document.getElementById(id);if(el)el.textContent=val;}
+
+// ============ RECORDATORIOS ============
+function recordatoriosPendientes(){
+  if(!Array.isArray(clientes)) return [];
+  var hoy=new Date(); hoy.setHours(0,0,0,0);
+  var res=[];
+  clientes.forEach(function(cl,idx){
+    var r=cl.recordatorio;
+    if(r && r.fecha && !r.cumplido){
+      var f=new Date(r.fecha+'T'+(r.hora||'09:00'));
+      var fDia=new Date(r.fecha+'T00:00:00');
+      var diffDias=Math.round((fDia-hoy)/86400000);
+      // avisa: 1 dia antes (diff===1), el dia (0) o vencido (<0)
+      if(diffDias<=1){
+        res.push({idx:idx,cliente:cl,fecha:f,diffDias:diffDias,nota:r.nota||''});
+      }
+    }
+  });
+  res.sort(function(a,b){return a.fecha-b.fecha;});
+  return res;
+}
+
+function avisarRecordatorios(){
+  var p=recordatoriosPendientes();
+  if(!p.length) return;
+  var txt='📅 RECORDATORIOS PENDIENTES ('+p.length+')\n\n';
+  p.forEach(function(r){
+    var estado=r.diffDias<0?'⚠️ VENCIDO ('+Math.abs(r.diffDias)+' día/s)':r.diffDias===0?'🔔 HOY':'⏰ MAÑANA';
+    txt+=estado+' — '+r.cliente.nombre+'\n   '+r.fecha.toLocaleDateString('es-AR')+' '+(r.cliente.recordatorio.hora||'')+'\n   '+(r.nota||'(sin nota)')+'\n\n';
+  });
+  txt+='Revisá la pestaña 📅 Recordatorios para gestionarlos.';
+  alert(txt);
+}
+
+function renderRecordatorios(){
+  var cont=document.getElementById('lista-recordatorios');
+  if(!cont) return;
+  if(!Array.isArray(clientes)) clientes=[];
+  // Todos los que tienen recordatorio activo
+  var lista=[];
+  clientes.forEach(function(cl,idx){
+    if(cl.recordatorio && cl.recordatorio.fecha && !cl.recordatorio.cumplido){
+      lista.push({idx:idx,cl:cl});
+    }
+  });
+  lista.sort(function(a,b){
+    return new Date(a.cl.recordatorio.fecha)-new Date(b.cl.recordatorio.fecha);
+  });
+  setTxt('rec-total',lista.length);
+
+  if(!lista.length){
+    cont.innerHTML='<div style="text-align:center;padding:40px;color:#999;font-style:italic">No hay recordatorios pendientes. Agregá uno desde la ficha de un cliente en Seguimiento.</div>';
+    return;
+  }
+  var hoy=new Date(); hoy.setHours(0,0,0,0);
+  var html='';
+  lista.forEach(function(it){
+    var cl=it.cl, r=cl.recordatorio;
+    var fDia=new Date(r.fecha+'T00:00:00');
+    var diff=Math.round((fDia-hoy)/86400000);
+    var color=diff<0?'#A32D2D':diff===0?'#C07000':diff===1?'#8A3FC0':'#185FA5';
+    var etiqueta=diff<0?'⚠️ VENCIDO hace '+Math.abs(diff)+' día/s':diff===0?'🔔 HOY':diff===1?'⏰ MAÑANA':'📅 En '+diff+' días';
+    html+='<div class="card" style="margin-bottom:10px;border-left:5px solid '+color+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">'+
+        '<div style="flex:1;min-width:200px">'+
+          '<div style="font-size:15px;font-weight:800;color:#1a1a1a">'+cl.nombre+'</div>'+
+          '<div style="font-size:13px;color:#555;margin-top:4px">'+(r.nota||'(sin nota)')+'</div>'+
+          (cl.tel?'<div style="font-size:12px;color:#888;margin-top:2px">📞 '+cl.tel+'</div>':'')+
+        '</div>'+
+        '<div style="text-align:right">'+
+          '<span style="display:inline-block;background:'+color+';color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px">'+etiqueta+'</span>'+
+          '<div style="font-size:11px;color:#888;margin-top:4px">'+new Date(r.fecha+'T00:00:00').toLocaleDateString('es-AR')+' '+(r.hora||'')+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">'+
+        (cl.tel?'<a href="https://wa.me/'+(cl.tel||'').replace(/\D/g,'')+'" target="_blank" style="background:#25D366;color:#fff;text-decoration:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700">💬 WhatsApp</a>':'')+
+        '<button onclick="cumplirRecordatorio('+it.idx+')" style="background:#2E6B0F;color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">✓ Listo</button>'+
+        '<button onclick="reprogramarRecordatorio('+it.idx+')" style="background:#C07000;color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">📅 Reprogramar</button>'+
+        '<button onclick="abrirModalCliente('+it.idx+')" style="background:#eee;color:#333;border:1px solid #ccc;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer">✏️ Ver ficha</button>'+
+      '</div>'+
+    '</div>';
+  });
+  cont.innerHTML=html;
+}
+
+function cumplirRecordatorio(idx){
+  if(!clientes[idx]||!clientes[idx].recordatorio)return;
+  if(!confirm('¿Marcar el recordatorio de '+clientes[idx].nombre+' como cumplido?'))return;
+  clientes[idx].recordatorio.cumplido=true;
+  // Registrar en historial
+  if(!clientes[idx].historial)clientes[idx].historial=[];
+  clientes[idx].historial.push({fecha:new Date().toLocaleDateString('es-AR')+' '+new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}),texto:'✓ Recordatorio cumplido: '+(clientes[idx].recordatorio.nota||'')});
+  guardarDatos();renderRecordatorios();renderClientes();
+}
+
+function reprogramarRecordatorio(idx){
+  if(!clientes[idx]||!clientes[idx].recordatorio)return;
+  var nueva=prompt('Nueva fecha del recordatorio (formato: AAAA-MM-DD)',clientes[idx].recordatorio.fecha);
+  if(!nueva)return;
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(nueva)){alert('Formato incorrecto. Usá AAAA-MM-DD, por ejemplo 2026-07-15.');return;}
+  clientes[idx].recordatorio.fecha=nueva;
+  clientes[idx].recordatorio.cumplido=false;
+  guardarDatos();renderRecordatorios();renderClientes();
+}
+
+
+
+
+
+// ============ IMPRESIÓN Y EXPORTACIÓN ============
+function abrirImpresion(html){
+  var old=document.getElementById('print-overlay');
+  if(old) old.remove();
+
+  var ov=document.createElement('div');
+  ov.id='print-overlay';
+  ov.style.cssText='position:fixed;inset:0;background:#fff;z-index:99999;display:flex;flex-direction:column';
+
+  var bar=document.createElement('div');
+  bar.style.cssText='display:flex;gap:10px;padding:10px 16px;background:#0d3d6e;align-items:center;flex-shrink:0';
+  var titulo=document.createElement('span');
+  titulo.style.cssText='color:#fff;font-weight:700;font-size:14px;flex:1';
+  titulo.textContent='Vista previa de impresión';
+  var btnPrint=document.createElement('button');
+  btnPrint.style.cssText='background:#fff;color:#0d3d6e;border:none;border-radius:6px;padding:8px 18px;font-weight:700;cursor:pointer';
+  btnPrint.textContent='🖨 Imprimir / Guardar PDF';
+  var btnClose=document.createElement('button');
+  btnClose.style.cssText='background:#A32D2D;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-weight:700;cursor:pointer';
+  btnClose.textContent='✕ Cerrar';
+  bar.appendChild(titulo); bar.appendChild(btnPrint); bar.appendChild(btnClose);
+
+  var f=document.createElement('iframe');
+  f.id='print-frame';
+  f.style.cssText='flex:1;width:100%;border:0;background:#fff';
+
+  ov.appendChild(bar); ov.appendChild(f);
+  document.body.appendChild(ov);
+
+  // Escribir el contenido en el iframe
+  var d=f.contentWindow.document;
+  d.open();
+  d.write(html.replace(/<button[^>]*window\.print[^>]*>[\s\S]*?<\/button>/gi,''));
+  d.close();
+
+  // Botón cerrar
+  btnClose.onclick=function(){ ov.remove(); };
+
+  // Botón imprimir — apunta al iframe con foco y delay
+  btnPrint.onclick=function(){
+    f.contentWindow.focus();
+    setTimeout(function(){ f.contentWindow.print(); }, 200);
+  };
+}
+
+function escCSV(v){
+  v=(v==null?'':String(v));
+  if(v.indexOf('"')>=0||v.indexOf(',')>=0||v.indexOf('\n')>=0){v='"'+v.replace(/"/g,'""')+'"';}
+  return v;
+}
+
+function descargarArchivo(contenido,nombre,tipo){
+  var blob=new Blob(['\ufeff'+contenido],{type:tipo});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=nombre;
+  a.click();
+}
+
+// ---- CONTACTOS ----
+function exportarContactosCSV(){
+  if(!contactos.length){alert('No hay contactos para exportar.');return;}
+  var cols=['nombre','empresa','tipo','rubro','tel','wa','tel2','tel3','email','web','dir','localidad','provincia','cp','ciudad','notas'];
+  var heads=['Nombre','Empresa','Tipo','Rubro','Teléfono','WhatsApp','Tel. oficina','Tel. alt.','Email','Web','Dirección','Localidad','Provincia','CP','Ciudad','Notas'];
+  var csv=heads.join(',')+'\n';
+  contactos.forEach(function(c){
+    csv+=cols.map(function(k){return escCSV(c[k]||'');}).join(',')+'\n';
+  });
+  descargarArchivo(csv,'SIPG_Contactos_'+new Date().toISOString().slice(0,10)+'.csv','text/csv;charset=utf-8');
+}
+
+function imprimirContactos(){
+  if(!contactos.length){alert('No hay contactos para imprimir.');return;}
+  var fecha=new Date().toLocaleDateString('es-AR');
+  var filas=contactos.map(function(c){
+    return '<tr><td>'+(c.nombre||'')+'</td><td>'+(c.empresa||'')+'</td><td>'+(c.tipo||'')+'</td><td>'+(c.rubro||'')+'</td><td>'+(c.tel||c.wa||'')+'</td><td>'+(c.email||'')+'</td><td>'+(c.ciudad||c.localidad||'')+'</td></tr>';
+  }).join('');
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Contactos SIP-G</title>'+
+    '<style>body{font-family:Arial,sans-serif;padding:20px;font-size:12px}h1{color:#185FA5;font-size:20px}'+
+    '.meta{color:#666;font-size:11px;margin-bottom:16px}table{width:100%;border-collapse:collapse}'+
+    'th{background:#185FA5;color:#fff;padding:6px 8px;text-align:left;font-size:10px;text-transform:uppercase}'+
+    'td{padding:5px 8px;border-bottom:1px solid #eee}tr:nth-child(even){background:#f6f9fc}'+
+    '@media print{button{display:none}}</style></head><body>'+
+    '<h1>📋 SIP-G — Listado de Contactos</h1>'+
+    '<div class="meta">Total: '+contactos.length+' contactos · Generado: '+fecha+'</div>'+
+    '<button onclick="window.print()" style="padding:8px 16px;background:#185FA5;color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;margin-bottom:14px">🖨 Imprimir</button>'+
+    '<table><thead><tr><th>Nombre</th><th>Empresa</th><th>Tipo</th><th>Rubro</th><th>Teléfono</th><th>Email</th><th>Ciudad</th></tr></thead><tbody>'+filas+'</tbody></table>'+
+    '</body></html>';
+  abrirImpresion(html);
+}
+
+function pasarASeguimiento(idx){
+  if(!Array.isArray(clientes)) clientes=[];
+  var c=contactos[idx];
+  if(!c){alert('No se encontró el contacto (idx='+idx+').');return;}
+  // Evitar duplicados: buscar por nombre + tel
+  var existe=clientes.some(function(cl){
+    return cl.nombre===c.nombre && (cl.tel||'')===(c.tel||c.wa||'');
+  });
+  var msg = existe
+    ? '"'+c.nombre+'" ya está en seguimiento. ¿Agregarlo igual como nuevo registro?'
+    : '¿Pasar a "'+c.nombre+'" a la sección Seguimiento como potencial cliente?';
+  // Usar setTimeout para evitar bloqueo de diálogos en file://
+  setTimeout(function(){
+    var ok = window.confirm(msg);
+    if(!ok) return;
+    clientes.push({
+      nombre:c.nombre||'',
+      tel:c.tel||c.wa||'',
+      email:c.email||'',
+      modelo:'',
+      lote:'',
+      presupuesto:'',
+      origen:'Desde contactos'+(c.empresa?' ('+c.empresa+')':''),
+      estado:'Nuevo',
+      notas:c.notas||'',
+      fechaIngreso:new Date().toLocaleDateString('es-AR'),
+      historial:[]
+    });
+    guardarDatos();
+    renderClientes();
+    setTimeout(function(){
+      alert('✅ "'+c.nombre+'" agregado a Seguimiento. Lo encontrás en la pestaña 🎯 Seguimiento.');
+    }, 100);
+  }, 50);
+}
+
+function imprimirFichaCliente(idx){
+  var cl=clientes[idx]; if(!cl)return;
+  var color=COLOR_ESTADO[cl.estado]||'#6B7A99';
+  var campos=[['Teléfono',cl.tel],['Email',cl.email],['Estado',cl.estado],['Modelo de interés',cl.modelo],['Lote de interés',cl.lote],['Presupuesto estimado',cl.presupuesto],['Origen',cl.origen],['Fecha de ingreso',cl.fechaIngreso]];
+  var filas=campos.filter(function(f){return f[1];}).map(function(f){
+    return '<tr><td style="font-weight:700;width:160px;color:#185FA5">'+f[0]+'</td><td>'+f[1]+'</td></tr>';
+  }).join('');
+  var hist='';
+  if(cl.historial && cl.historial.length){
+    hist='<h2 style="color:#8A3FC0;font-size:16px;margin-top:24px;border-bottom:2px solid #8A3FC0;padding-bottom:4px">Historial de interacciones</h2>'+
+      '<table style="width:100%;border-collapse:collapse;margin-top:8px">'+
+      cl.historial.slice().reverse().map(function(e){
+        return '<tr><td style="width:150px;color:#888;font-size:12px;vertical-align:top;padding:6px 8px;border-bottom:1px solid #eee">'+e.fecha+'</td><td style="padding:6px 8px;border-bottom:1px solid #eee">'+e.texto+'</td></tr>';
+      }).join('')+
+      '</table>';
+  } else {
+    hist='<p style="color:#999;font-style:italic;margin-top:20px">Sin interacciones registradas aún.</p>';
+  }
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+(cl.nombre||'Cliente')+'</title>'+
+    '<style>body{font-family:Arial,sans-serif;padding:30px;font-size:14px}h1{color:#185FA5;margin-bottom:4px}'+
+    '.estado{display:inline-block;background:'+color+';color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:16px}'+
+    'table{width:100%;border-collapse:collapse;margin-top:8px}td{padding:8px 10px;border-bottom:1px solid #eee}'+
+    '.notas{margin-top:16px;padding:12px;background:#f6f9fc;border-radius:8px}@media print{button{display:none}}</style></head><body>'+
+    '<button onclick="window.print()" style="padding:8px 16px;background:#185FA5;color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;margin-bottom:14px">🖨 Imprimir</button>'+
+    '<h1>'+(cl.nombre||'Sin nombre')+'</h1>'+
+    '<div class="estado">'+(cl.estado||'Nuevo')+'</div>'+
+    '<table><tbody>'+filas+'</tbody></table>'+
+    (cl.notas?'<div class="notas"><strong>Notas:</strong><br>'+cl.notas+'</div>':'')+
+    hist+
+    '</body></html>';
+  abrirImpresion(html);
+}
+
+function imprimirFichaContacto(idx){
+  var c=contactos[idx];if(!c)return;
+  var campos=[['Empresa',c.empresa],['Tipo',c.tipo],['Rubro',c.rubro],['Teléfono',c.tel],['WhatsApp',c.wa],['Tel. oficina',c.tel2],['Tel. alternativo',c.tel3],['Email',c.email],['Sitio web',c.web],['Dirección',c.dir],['Localidad',c.localidad],['Provincia',c.provincia],['CP',c.cp],['Ciudad',c.ciudad]];
+  var filas=campos.filter(function(f){return f[1];}).map(function(f){
+    return '<tr><td style="font-weight:700;width:140px;color:#185FA5">'+f[0]+'</td><td>'+f[1]+'</td></tr>';
+  }).join('');
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+(c.nombre||'Contacto')+'</title>'+
+    '<style>body{font-family:Arial,sans-serif;padding:30px;font-size:14px}h1{color:#185FA5}'+
+    'table{width:100%;border-collapse:collapse;margin-top:16px}td{padding:8px 10px;border-bottom:1px solid #eee}'+
+    '.notas{margin-top:16px;padding:12px;background:#f6f9fc;border-radius:8px}@media print{button{display:none}}</style></head><body>'+
+    '<button onclick="window.print()" style="padding:8px 16px;background:#185FA5;color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;margin-bottom:14px">🖨 Imprimir</button>'+
+    '<h1>'+(c.nombre||'Sin nombre')+'</h1>'+
+    '<table><tbody>'+filas+'</tbody></table>'+
+    (c.notas?'<div class="notas"><strong>Notas:</strong><br>'+c.notas+'</div>':'')+
+    '</body></html>';
+  abrirImpresion(html);
+}
+
+// ---- CLIENTES / SEGUIMIENTO ----
+function exportarClientesCSV(){
+  if(!clientes.length){alert('No hay clientes para exportar.');return;}
+  var cols=['nombre','tel','email','estado','modelo','lote','presupuesto','origen','fechaIngreso','notas'];
+  var heads=['Nombre','Teléfono','Email','Estado','Modelo','Lote','Presupuesto','Origen','Fecha ingreso','Notas'];
+  var csv=heads.join(',')+'\n';
+  clientes.forEach(function(c){
+    csv+=cols.map(function(k){return escCSV(c[k]||'');}).join(',')+'\n';
+  });
+  descargarArchivo(csv,'SIPG_Clientes_'+new Date().toISOString().slice(0,10)+'.csv','text/csv;charset=utf-8');
+}
+
+function imprimirClientes(){
+  if(!clientes.length){alert('No hay clientes para imprimir.');return;}
+  var fecha=new Date().toLocaleDateString('es-AR');
+  var filas=clientes.map(function(c){
+    var ult=c.historial&&c.historial.length?c.historial[c.historial.length-1].fecha:'';
+    return '<tr><td>'+(c.nombre||'')+'</td><td>'+(c.estado||'')+'</td><td>'+(c.tel||'')+'</td><td>'+(c.modelo||'')+'</td><td>'+(c.lote||'')+'</td><td>'+(c.presupuesto||'')+'</td><td>'+(c.fechaIngreso||'')+'</td><td>'+ult+'</td></tr>';
+  }).join('');
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Seguimiento Clientes SIP-G</title>'+
+    '<style>body{font-family:Arial,sans-serif;padding:20px;font-size:12px}h1{color:#185FA5;font-size:20px}'+
+    '.meta{color:#666;font-size:11px;margin-bottom:16px}table{width:100%;border-collapse:collapse}'+
+    'th{background:#2E6B0F;color:#fff;padding:6px 8px;text-align:left;font-size:10px;text-transform:uppercase}'+
+    'td{padding:5px 8px;border-bottom:1px solid #eee}tr:nth-child(even){background:#f4faf4}'+
+    '@media print{button{display:none}}</style></head><body>'+
+    '<h1>🎯 SIP-G — Seguimiento de Clientes</h1>'+
+    '<div class="meta">Total: '+clientes.length+' clientes · Generado: '+fecha+'</div>'+
+    '<button onclick="window.print()" style="padding:8px 16px;background:#2E6B0F;color:#fff;border:none;border-radius:6px;font-weight:700;cursor:pointer;margin-bottom:14px">🖨 Imprimir</button>'+
+    '<table><thead><tr><th>Nombre</th><th>Estado</th><th>Teléfono</th><th>Modelo</th><th>Lote</th><th>Presupuesto</th><th>Ingreso</th><th>Últ. contacto</th></tr></thead><tbody>'+filas+'</tbody></table>'+
+    '</body></html>';
+  abrirImpresion(html);
+}
+
+
+function actualizarStats(){
+  document.getElementById('stat-total').textContent = contactos.length;
+  document.getElementById('stat-prov').textContent = contactos.filter(function(c){return c.tipo==='Proveedor';}).length;
+  document.getElementById('stat-cli').textContent = contactos.filter(function(c){return c.tipo==='Cliente';}).length;
+  document.getElementById('stat-gen').textContent = contactos.filter(function(c){return c.tipo==='General';}).length;
+}
+
+// ---- IMPORTAR CSV ----
+function importarCSV(input){
+  var file=input.files[0]; if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var text=e.target.result;
+    // Detectar si es VCF
+    if(text.indexOf('BEGIN:VCARD')>=0){
+      importarVCF(text);
+    } else {
+      importarCSVplano(text);
+    }
+    input.value='';
+  };
+  reader.readAsText(file,'UTF-8');
+}
+
+function importarVCF(text){
+  // Normalizar saltos de línea
+  text = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+  // Unir líneas continuadas (las que empiezan con espacio o tab)
+  text = text.replace(/\n[ \t]/g,'');
+  var bloques = text.split('BEGIN:VCARD');
+  var importados = 0;
+  var omitidos = 0;
+  bloques.forEach(function(bloque){
+    if(!bloque.trim()) return;
+    var lineas = bloque.split('\n');
+    var fn='', tel='', email='', org='', ciudad='', dir='';
+    lineas.forEach(function(l){
+      l = l.trim();
+      // Nombre completo
+      if(l.match(/^FN:/i)) fn = l.replace(/^FN:/i,'').trim();
+      // Teléfono — tomar el primero disponible
+      if(!tel && l.match(/^TEL/i)){
+        var v = l.split(':'); if(v[1]) tel = v[1].trim();
+      }
+      // Email
+      if(!email && l.match(/^EMAIL/i)){
+        var v = l.split(':'); if(v[1]) email = v[1].trim();
+      }
+      // Organización
+      if(l.match(/^ORG:/i)) org = l.replace(/^ORG:/i,'').trim().replace(/;/g,' ').trim();
+      // Dirección
+      if(l.match(/^ADR/i)){
+        var v = l.split(':'); if(v[1]){
+          var partes = v[1].split(';').map(function(p){return p.trim();}).filter(Boolean);
+          ciudad = partes[2]||partes[1]||partes[0]||'';
+          dir = partes.join(', ');
+        }
+      }
+    });
+    if(fn){
+      contactos.push({
+        nombre: fn,
+        empresa: org||'',
+        tipo: 'General',
+        rubro: '',
+        ciudad: ciudad||'',
+        tel: tel||'',
+        wa: '',
+        email: email||'',
+        web: '',
+        dir: dir||'',
+        notas: '',
+        fecha: new Date().toLocaleDateString('es-AR')
+      });
+      importados++;
+    } else {
+      omitidos++;
+    }
+  });
+  guardarDatos(); renderContactos(); actualizarStats();
+  alert('VCF importado: '+importados+' contactos cargados.'+(omitidos>0?' ('+omitidos+' omitidos sin nombre)':''));
+}
+
+function importarCSVplano(text){
+  var lineas=text.split('\n').filter(function(l){return l.trim();});
+  if(lineas.length<2){alert('CSV sin datos.');return;}
+  var headers=lineas[0].split(',').map(function(h){return h.trim().toLowerCase().replace(/['"]/g,'');});
+  var importados=0;
+  var get=function(cols,names){
+    var r='';
+    names.forEach(function(n){var i=headers.indexOf(n);if(i>=0&&cols[i])r=r||cols[i];});
+    return r;
+  };
+  for(var i=1;i<lineas.length;i++){
+    var cols=lineas[i].split(',').map(function(c){return c.trim().replace(/['"]/g,'');});
+    if(!cols[0])continue;
+    var c={
+      nombre:get(cols,['name','nombre','full name'])||cols[0]||'',
+      empresa:get(cols,['company','empresa','organization']),
+      tipo:'General',
+      rubro:get(cols,['rubro','category']),
+      ciudad:get(cols,['city','ciudad']),
+      tel:get(cols,['phone','telefono','tel','mobile']),
+      wa:get(cols,['whatsapp','wa']),
+      email:get(cols,['email','correo']),
+      web:get(cols,['web','website']),
+      dir:get(cols,['address','direccion']),
+      notas:get(cols,['notes','notas']),
+      fecha:new Date().toLocaleDateString('es-AR')
+    };
+    if(c.nombre){contactos.push(c);importados++;}
+  }
+  guardarDatos();renderContactos();actualizarStats();
+  alert('Se importaron '+importados+' contactos.');
+}
+
+function abrirModalPwd(id){
+  editandoPwd = id !== undefined ? id : null;
+  document.getElementById('modal-pwd-titulo').textContent = id !== undefined ? 'Editar clave' : 'Nueva clave / acceso';
+  var campos = ['servicio','cat','usuario','pwd','url','tel','notas'];
+  if(id !== undefined){
+    var p = passwords[id];
+    document.getElementById('p-servicio').value = p.servicio||'';
+    document.getElementById('p-cat').value = p.cat||'personal';
+    document.getElementById('p-usuario').value = p.usuario||'';
+    document.getElementById('p-pwd').value = p.pwd||'';
+    document.getElementById('p-url').value = p.url||'';
+    document.getElementById('p-tel').value = p.tel||'';
+    document.getElementById('p-notas').value = p.notas||'';
+  } else {
+    ['servicio','usuario','pwd','url','tel','notas'].forEach(function(f){document.getElementById('p-'+f).value='';});
+    document.getElementById('p-cat').value = 'personal';
+  }
+  document.getElementById('modal-pwd').classList.add('open');
+}
+
+function guardarPwd(){
+  var servicio = document.getElementById('p-servicio').value.trim();
+  var pwd = document.getElementById('p-pwd').value.trim();
+  if(!servicio||!pwd){ alert('Servicio y contraseña son obligatorios.'); return; }
+  var p = {
+    servicio: servicio,
+    cat: document.getElementById('p-cat').value,
+    usuario: document.getElementById('p-usuario').value,
+    pwd: pwd,
+    url: document.getElementById('p-url').value,
+    tel: document.getElementById('p-tel').value,
+    notas: document.getElementById('p-notas').value,
+    fecha: new Date().toLocaleDateString('es-AR')
+  };
+  if(editandoPwd !== null){
+    passwords[editandoPwd] = p;
+  } else {
+    passwords.push(p);
+  }
+  guardarDatos();
+  cerrarModal('modal-pwd');
+  renderPasswords();
+}
+
+function eliminarPwd(id){
+  if(!confirm('¿Eliminar esta clave?')) return;
+  passwords.splice(id, 1);
+  guardarDatos();
+  renderPasswords();
+}
+
+function togglePwd(id){
+  var el = document.getElementById('pwd-val-'+id);
+  el.classList.toggle('oculto');
+  el.classList.toggle('visible');
+}
+
+function copiarPwd(id){
+  navigator.clipboard.writeText(passwords[id].pwd).then(function(){
+    alert('✅ Contraseña copiada al portapapeles');
+  });
+}
+
+function renderPasswords(){
+  var buscar = document.getElementById('buscar-pwd').value.toLowerCase();
+  var filtroCat = document.getElementById('filtro-pwd').value;
+  var el = document.getElementById('lista-passwords');
+  var filtrados = passwords.filter(function(p,i){
+    var match = (p.servicio+p.usuario+p.url+p.notas).toLowerCase().includes(buscar);
+    var cat = !filtroCat || p.cat === filtroCat;
+    return match && cat;
+  });
+  if(!filtrados.length){
+    el.innerHTML = '<div style="text-align:center;padding:30px;color:#888;font-style:italic">No se encontraron claves.</div>';
+    return;
+  }
+  el.innerHTML = filtrados.map(function(p){
+    var idx = passwords.indexOf(p);
+    var catColor = p.cat==='bancario'?'#A32D2D':p.cat==='personal'?'#2E6B0F':p.cat==='proveedor'?'#854F0B':'#185FA5';
+    return '<div class="pwd-item '+p.cat+'">'+
+      '<div>'+
+        '<div style="font-size:14px;font-weight:700">'+p.servicio+'</div>'+
+        '<div style="font-size:11px;color:#666;margin-top:3px">'+
+          '<span style="color:'+catColor+';font-weight:700;text-transform:uppercase;font-size:10px">'+p.cat+'</span>'+
+          (p.usuario?' · '+p.usuario:'')+(p.url?' · <a href="'+p.url+'" target="_blank" style="color:#185FA5">'+p.url+'</a>':'')+
+        '</div>'+
+        (p.notas?'<div style="font-size:11px;color:#888;margin-top:3px">'+p.notas+'</div>':'')+
+      '</div>'+
+      '<div>'+
+        '<div style="font-size:11px;color:#666;margin-bottom:4px">Usuario</div>'+
+        '<div style="font-size:13px;font-weight:600">'+(p.usuario||'—')+'</div>'+
+      '</div>'+
+      '<div>'+
+        '<div style="font-size:11px;color:#666;margin-bottom:4px">Contraseña <span style="cursor:pointer;color:#185FA5" onclick="togglePwd('+idx+')">👁</span></div>'+
+        '<div class="pwd-val oculto" id="pwd-val-'+idx+'" onclick="togglePwd('+idx+')">'+p.pwd+'</div>'+
+      '</div>'+
+      '<div style="display:flex;flex-direction:column;gap:6px">'+
+        '<button class="btn btn-gray" style="padding:4px 8px;font-size:11px" onclick="copiarPwd('+idx+')" title="Copiar">📋</button>'+
+        '<button class="btn btn-gray" style="padding:4px 8px;font-size:11px" onclick="abrirModalPwd('+idx+')" title="Editar">✏️</button>'+
+        '<button class="btn btn-red" style="padding:4px 8px;font-size:11px" onclick="eliminarPwd('+idx+')" title="Eliminar">🗑</button>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+// ---- CONFIG ----
+function cambiarPassword(){
+  var actual = document.getElementById('pwd-actual').value;
+  var nueva = document.getElementById('pwd-nueva').value;
+  var confirm = document.getElementById('pwd-confirm').value;
+  var stored = localStorage.getItem(PWD_KEY) || 'sipg2024';
+  var msg = document.getElementById('pwd-msg');
+  if(actual !== stored){ msg.textContent='❌ Contraseña actual incorrecta'; msg.style.color='#A32D2D'; return; }
+  if(nueva.length < 4){ msg.textContent='❌ La nueva contraseña debe tener al menos 4 caracteres'; msg.style.color='#A32D2D'; return; }
+  if(nueva !== confirm){ msg.textContent='❌ Las contraseñas no coinciden'; msg.style.color='#A32D2D'; return; }
+  localStorage.setItem(PWD_KEY, nueva);
+  msg.textContent='✅ Contraseña cambiada correctamente';
+  msg.style.color='#2E6B0F';
+  ['pwd-actual','pwd-nueva','pwd-confirm'].forEach(function(id){document.getElementById(id).value='';});
+}
+
+function exportarTodo(){
+  var datos = {
+    fecha: new Date().toLocaleDateString('es-AR'),
+    contactos: contactos,
+    passwords: passwords,
+    clientes: clientes
+  };
+  var blob = new Blob([JSON.stringify(datos, null, 2)], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'SIPG_Agenda_respaldo_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+
+function importarRespaldo(input){
+  var file = input.files[0];
+  if(!file) return;
+  if(!confirm('¿Importar respaldo? Los datos actuales se REEMPLAZARÁN.')) return;
+  var reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      var d = JSON.parse(e.target.result);
+      contactos = d.contactos || [];
+      passwords = d.passwords || [];
+      clientes = d.clientes || [];
+      guardarDatos();
+      renderContactos();
+      renderPasswords();
+      renderClientes();
+      actualizarStats();
+      alert('✅ Respaldo importado: '+contactos.length+' contactos, '+passwords.length+' claves.');
+    } catch(err){
+      alert('❌ Error al leer el archivo. Asegurate de que sea un respaldo válido.');
+    }
+  };
+  reader.readAsText(file);
+  input.value='';
+}
+
+function borrarTodo(){
+  if(!confirm('¿Borrar TODOS los datos? Esta acción no se puede deshacer.')) return;
+  if(!confirm('Segunda confirmación — ¿estás seguro?')) return;
+  contactos=[]; passwords=[];
+  guardarDatos();
+  renderContactos();
+  renderPasswords();
+  actualizarStats();
+  alert('Todos los datos fueron eliminados.');
+}
+
+
+
+// ---- BÚSQUEDA POR VOZ ----
+var reconocimiento = null;
+
+function iniciarVoz(){
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SpeechRecognition){
+    alert('Tu navegador no soporta búsqueda por voz. Usá Chrome para esta función.');
+    return;
+  }
+
+  var panel = document.getElementById('panel-voz');
+  var estado = document.getElementById('voz-estado');
+  var textoEl = document.getElementById('voz-texto');
+  var resultadosEl = document.getElementById('voz-resultados');
+  var btnVoz = document.getElementById('btn-voz');
+
+  // Si ya está escuchando, detener
+  if(reconocimiento){
+    reconocimiento.stop();
+    return;
+  }
+
+  reconocimiento = new SpeechRecognition();
+  reconocimiento.lang = 'es-AR';
+  reconocimiento.interimResults = true;
+  reconocimiento.maxAlternatives = 3;
+
+  panel.style.display = 'block';
+  estado.textContent = '🎤 Escuchando... hablá el nombre';
+  textoEl.textContent = '';
+  resultadosEl.innerHTML = '';
+  btnVoz.style.background = '#A32D2D';
+  btnVoz.textContent = '⏹';
+
+  reconocimiento.onresult = function(event){
+    var transcripcion = '';
+    for(var i = event.resultIndex; i < event.results.length; i++){
+      transcripcion += event.results[i][0].transcript;
+    }
+    textoEl.textContent = '"' + transcripcion + '"';
+
+    if(event.results[event.results.length-1].isFinal){
+      buscarPorVoz(transcripcion);
+    }
+  };
+
+  reconocimiento.onerror = function(event){
+    estado.textContent = '❌ Error: ' + event.error + '. Intentá de nuevo.';
+    btnVoz.style.background = '#185FA5';
+    btnVoz.textContent = '🎤';
+    reconocimiento = null;
+  };
+
+  reconocimiento.onend = function(){
+    btnVoz.style.background = '#185FA5';
+    btnVoz.textContent = '🎤';
+    reconocimiento = null;
+  };
+
+  reconocimiento.start();
+}
+
+function buscarPorVoz(texto){
+  var estado = document.getElementById('voz-estado');
+  var resultadosEl = document.getElementById('voz-resultados');
+  estado.textContent = '🔍 Buscando: "' + texto + '"';
+
+  var termino = texto.toLowerCase().trim();
+  var encontrados = contactos.filter(function(c){
+    return (c.nombre + ' ' + c.empresa + ' ' + c.rubro).toLowerCase().includes(termino);
+  });
+
+  if(!encontrados.length){
+    resultadosEl.innerHTML = '<p style="color:#A32D2D;font-size:13px">No encontré contactos con ese nombre. Intentá de nuevo.</p>';
+    return;
+  }
+
+  // También actualizar el buscador principal
+  document.getElementById('buscar-contacto').value = texto;
+  renderContactos();
+
+  // Mostrar tarjetas de resultado rápido
+  var html = '<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">';
+  encontrados.slice(0,6).forEach(function(c){
+    var idx = contactos.indexOf(c);
+    var telLimpio = (c.tel||'').replace(/\D/g,'');
+    var telWA = telLimpio;
+    if(telWA.startsWith('0')) telWA = '54' + telWA.slice(1);
+    else if(!telWA.startsWith('54')) telWA = '54' + telWA;
+
+    var btnWA = c.tel ?
+      '<a href="https://wa.me/' + telWA + '" target="_blank" style="display:inline-block;background:#25D366;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;margin-right:6px">💬 WhatsApp</a>' : '';
+    var btnLlamar = c.tel ?
+      '<a href="tel:' + c.tel + '" style="display:inline-block;background:#185FA5;color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:700;text-decoration:none;margin-right:6px">📞 Llamar</a>' : '';
+    var btnEditar =
+      '<button onclick="abrirModalContacto(' + idx + ')" style="background:#eee;color:#333;border:1px solid #ccc;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer">✏️ Editar</button>';
+
+    html += '<div style="background:#fff;border:1.5px solid #c7ddf5;border-radius:8px;padding:14px;min-width:220px;max-width:280px;flex:1">' +
+      '<div style="font-weight:700;font-size:14px;color:#1a1a1a;margin-bottom:4px">' + c.nombre + '</div>' +
+      (c.empresa ? '<div style="font-size:11px;color:#666;margin-bottom:4px">' + c.empresa + '</div>' : '') +
+      (c.tel ? '<div style="font-size:13px;color:#333;margin-bottom:10px">📞 ' + c.tel + '</div>' : '<div style="font-size:12px;color:#aaa;margin-bottom:10px">Sin teléfono</div>') +
+      '<div>' + btnWA + btnLlamar + btnEditar + '</div>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  if(encontrados.length > 6){
+    html += '<p style="font-size:12px;color:#666;margin-top:8px">Mostrando 6 de ' + encontrados.length + ' resultados. Ver todos abajo en la tabla.</p>';
+  }
+
+  resultadosEl.innerHTML = html;
+  estado.textContent = '✅ ' + encontrados.length + ' contacto' + (encontrados.length>1?'s':'') + ' encontrado' + (encontrados.length>1?'s':'');
+}
+
+function cerrarPanelVoz(){
+  if(reconocimiento){ reconocimiento.stop(); reconocimiento = null; }
+  document.getElementById('panel-voz').style.display = 'none';
+  document.getElementById('buscar-contacto').value = '';
+  renderContactos();
+  document.getElementById('btn-voz').style.background = '#185FA5';
+  document.getElementById('btn-voz').textContent = '🎤';
+}
+
+// ---- SELECCIÓN MÚLTIPLE ----
+function actualizarSeleccion(){
+  var chks = document.querySelectorAll('.chk-contacto:checked');
+  var barra = document.getElementById('barra-seleccion');
+  var count = document.getElementById('sel-count');
+  if(chks.length > 0){
+    barra.style.display = 'flex';
+    count.textContent = chks.length + ' seleccionado' + (chks.length>1?'s':'');
+  } else {
+    barra.style.display = 'none';
+  }
+  // actualizar checkbox "todos"
+  var todos = document.querySelectorAll('.chk-contacto');
+  document.getElementById('chk-todos').checked = todos.length > 0 && chks.length === todos.length;
+}
+
+function toggleTodos(chkTodos){
+  var chks = document.querySelectorAll('.chk-contacto');
+  chks.forEach(function(c){ c.checked = chkTodos.checked; });
+  actualizarSeleccion();
+}
+
+function deseleccionarTodos(){
+  document.querySelectorAll('.chk-contacto').forEach(function(c){ c.checked = false; });
+  var chkTodos = document.getElementById('chk-todos');
+  if(chkTodos) chkTodos.checked = false;
+  document.getElementById('barra-seleccion').style.display = 'none';
+}
+
+function cambiarTipoSeleccionados(nuevoTipo){
+  var chks = document.querySelectorAll('.chk-contacto:checked');
+  if(!chks.length){ alert('No hay contactos seleccionados.'); return; }
+  var cantidad = chks.length;
+  if(!confirm('¿Cambiar ' + cantidad + ' contacto' + (cantidad>1?'s':'') + ' a tipo "' + nuevoTipo + '"?')) return;
+  chks.forEach(function(chk){
+    var idx = parseInt(chk.getAttribute('data-idx'));
+    if(contactos[idx]) contactos[idx].tipo = nuevoTipo;
+  });
+  guardarDatos();
+  renderContactos();
+  actualizarStats();
+  deseleccionarTodos();
+  alert('✅ ' + cantidad + ' contacto' + (cantidad>1?'s':'') + ' cambiado' + (cantidad>1?'s':'') + ' a ' + nuevoTipo + '.');
+}
+
+// ---- MODAL ----
+function cerrarModal(id){
+  document.getElementById(id).classList.remove('open');
+}
+document.querySelectorAll('.modal-bg').forEach(function(m){
+  m.addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+});
+
+// ---- INIT ----
+window.onload = function(){
+  if(sessionStorage.getItem(SESSION_KEY)){
+    document.getElementById('login-screen').style.display='none';
+    document.body.style.display='block';
+    cargarDatos();
+  }
+};
+</script>
+
+
+</body></html>
